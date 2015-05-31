@@ -1,0 +1,16 @@
+{
+  "name": "global",
+  "version": "0.1.0",
+  "authors": [
+    "leesus <lee@lee-ellam.com>"
+  ],
+  "description": "Styleguide CSS and global JavaScript shared across all of JustGiving, used in GG.Web.Chrome",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
