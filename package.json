@@ -1,13 +1,28 @@
 {
-  "name": "ui",
+  "name": "global",
   "version": "0.1.0",
-  "description": "A collection of self contained UI modules for JustGiving",
+  "description": "Styleguide CSS and Global JavaScript shared across all of JustGiving, used in GG.Web.Chrome",
   "scripts": {
     "test": "karma start --single-run"
   },
   "author": "leesus",
   "license": "MIT",
   "devDependencies": {
-    "bower": "^1.4.1"
+    "gulp-bump": "^0.3.1",
+    "gulp-clean": "^0.3.1",
+    "gulp-git": "^1.2.4",
+    "gulp-jshint": "^1.11.0",
+    "gulp-less": "^3.0.3",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-uglify": "^1.2.0",
+    "jasmine-core": "^2.3.4",
+    "jshint-stylish": "^2.0.0",
+    "karma": "^0.12.35",
+    "karma-jasmine": "^0.3.5",
+    "karma-phantomjs-launcher": "^0.2.0",
+    "less-plugin-autoprefix": "^1.4.2",
+    "less-plugin-clean-css": "^1.5.0",
+    "phantomjs": "^1.9.17"
   }
 }

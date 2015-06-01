@@ -57,21 +57,27 @@ gulp.task('build-css', function() {
     .pipe(gulp.dest('./dist'));
 });
 
-// Bump patch versions in module and global
+// Move less
+gulp.task('copy-less', function() {
+  return gulp.src([]'./src/less/**/*'])
+    .pipe(gulp.dest('./dist/styleguide'));
+});
+
+// Bump patch versions in module
 gulp.task('bump', ['test'], function() {
   return gulp.src(['./package.json', './bower.json'])
     .pipe(bump())
     .pipe(gulp.dest('./'));
 });
 
-// Bump patch versions in module and global
+// Bump patch versions in module
 gulp.task('bump:minor', ['test'], function() {
   return gulp.src(['./package.json', './bower.json'])
     .pipe(bump({ type: 'minor' }))
     .pipe(gulp.dest('./'));
 });
 
-// Bump major versions in module and global
+// Bump major versions in module
 gulp.task('bump:major', ['test'], function() {
   return gulp.src(['./package.json', './bower.json'])
     .pipe(bump({ type: 'major' }))
@@ -101,4 +107,4 @@ gulp.task('release:major', ['bump:major', 'tag']);
 gulp.task('test', ['lint', 'karma']);
 
 // Build files
-gulp.task('build', ['clean', 'test', 'build-css', 'build-js']);
+gulp.task('build', ['clean', 'test', 'build-css', 'build-js', 'copy-less']);
