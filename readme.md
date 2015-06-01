@@ -15,6 +15,8 @@ Any module that is library specific should include that library in its name, it 
 
 If the module contains JavaScript, unit tests must be included within the module folder. This is to ensure that tests pass before the module can be versioned and published.
 
+To include serverside partials, we can create partial views with a dynamic model, i.e. `@model dynamic`, then reference the `@Model.propertyName` as usual, just pass an `ExpandoObject` to the partial.
+
  A basic example is below:
 
 ```
@@ -32,6 +34,8 @@ If the module contains JavaScript, unit tests must be included within the module
             ...
         - js/
           - global.js
+        - views/
+          - _Partial.cshtml
       - dist/
       ...
     - futuredatevalidator-angular/

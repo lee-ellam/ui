@@ -59,8 +59,14 @@ gulp.task('build-css', function() {
 
 // Move less
 gulp.task('copy-less', function() {
-  return gulp.src([]'./src/less/**/*'])
+  return gulp.src(['./src/less/**/*'])
     .pipe(gulp.dest('./dist/styleguide'));
+});
+
+// Move Razor partials
+gulp.task('copy-views', function() {
+  return gulp.src(['./src/views/**/*'])
+    .pipe(gulp.dest('./dist/views'));
 });
 
 // Bump patch versions in module
@@ -107,4 +113,4 @@ gulp.task('release:major', ['bump:major', 'tag']);
 gulp.task('test', ['lint', 'karma']);
 
 // Build files
-gulp.task('build', ['clean', 'test', 'build-css', 'build-js', 'copy-less']);
+gulp.task('build', ['clean', 'test', 'build-css', 'build-js', 'copy-less', 'copy-views']);
