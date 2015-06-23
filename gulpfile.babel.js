@@ -16,79 +16,59 @@ let jshint = require('gulp-jshint');
 let stylish = require('jshint-stylish');
 
 // Clean up dist folder
-gulp.task('clean', () => {
-  return gulp.src('./dist', { read: false })
-    .pipe(clean());
-});
+gulp.task('clean', () => gulp.src('./dist', { read: false })
+                             .pipe(clean()));
 
 // Lint
-gulp.task('lint', () => {
-  return gulp.src('./src/**/*.js')
-    .pipe(jshint('.jshintrc'))
-    .pipe(jshint.reporter(stylish));
-});
+gulp.task('lint', () => gulp.src('./src/**/*.js')
+                            .pipe(jshint('.jshintrc'))
+                            .pipe(jshint.reporter(stylish)));
 
 // Run tests
-gulp.task('karma', (done) => {
-  return karma.start({
-    configFile: __dirname + '/karma.conf.js',
-    singleRun: true
-  }, done);
-});
+gulp.task('karma', done => karma.start({
+                             configFile: __dirname + '/karma.conf.js',
+                             singleRun: true
+                           }, done));
 
 // Build js
-gulp.task('build-js', () => {
-  return gulp.src('./src/js/global.js')
-    .pipe(gulp.dest('./dist'))
-    .pipe(rename('global.min.js'))
-    .pipe(uglify())
-    .pipe(gulp.dest('./dist'))
-});
+gulp.task('build-js', () => gulp.src('./src/js/global.js')
+                                .pipe(gulp.dest('./dist'))
+                                .pipe(rename('global.min.js'))
+                                .pipe(uglify())
+                                .pipe(gulp.dest('./dist')));
 
 // Build less
-gulp.task('build-css', () => {
-  return gulp.src('./src/less/styleguide.less')
-    .pipe(sourcemaps.init())
-    .pipe(less({
-      paths: [ path.join(__dirname, 'src', 'less', 'base') ],
-      plugins: [cleanCSS, autoprefix]
-    }))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest('./dist'));
-});
+gulp.task('build-css', () => gulp.src('./src/less/styleguide.less')
+                                 .pipe(sourcemaps.init())
+                                 .pipe(less({
+                                   paths: [ path.join(__dirname, 'src', 'less', 'base') ],
+                                   plugins: [cleanCSS, autoprefix]
+                                 }))
+                                 .pipe(sourcemaps.write())
+                                 .pipe(gulp.dest('./dist')));
 
 // Move less
-gulp.task('copy-less', () => {
-  return gulp.src(['./src/less/**/*'])
-    .pipe(gulp.dest('./dist/styleguide'));
-});
+gulp.task('copy-less', () => gulp.src(['./src/less/**/*'])
+                                 .pipe(gulp.dest('./dist/styleguide')));
 
 // Move Razor partials
-gulp.task('copy-views', () => {
-  return gulp.src(['./src/views/**/*'])
-    .pipe(gulp.dest('./dist/views'));
-});
+gulp.task('copy-views', () => gulp.src(['./src/views/**/*'])
+                                  .pipe(gulp.dest('./dist/views')));
 
 // Bump patch versions in module
-gulp.task('bump', ['test'], () => {
-  return gulp.src(['./package.json', './bower.json'])
-    .pipe(bump())
-    .pipe(gulp.dest('./'));
-});
+gulp.task('bump', ['test'], () => gulp.src(['./package.json', './bower.json'])
+                                      .pipe(bump())
+                                      .pipe(gulp.dest('./')));
 
 // Bump patch versions in module
-gulp.task('bump:minor', ['test'], () => {
-  return gulp.src(['./package.json', './bower.json'])
-    .pipe(bump({ type: 'minor' }))
-    .pipe(gulp.dest('./'));
-});
+gulp.task('bump:minor', ['test'], () => gulp.src(['./package.json', './bower.json'])
+                                            .pipe(bump({ type: 'minor' }))
+                                            .pipe(gulp.dest('./')));
 
 // Bump major versions in module
-gulp.task('bump:major', ['test'], () => {
-  return gulp.src(['./package.json', './bower.json'])
-    .pipe(bump({ type: 'major' }))
-    .pipe(gulp.dest('./'));
-});
+gulp.task('bump:major', ['test'], () => gulp.src(['./package.json', './bower.json'])
+                                            .pipe(bump({ type: 'major' }))
+                                            .pipe(gulp.dest('./')));
 
 // Tag release in git
 gulp.task('tag', () => {
